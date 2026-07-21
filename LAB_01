@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+int main(){
+    char text[100];
+    int i,key;
+    
+    printf("enter the word :");
+    scanf("%s",text);
+    
+    printf("\nEnter the key element :");
+    scanf("%d",&key);
+    
+     for(i = 0; text[i] != '\0'; i++)
+    {
+        text[i] = ((text[i] - 'A' + key) % 26) + 'A';
+    }
+
+    printf("Encrypted Text: %s", text);
+
+    
+  for(i = 0; text[i] != '\0'; i++)
+    {
+        text[i] = ((text[i] - 'A' - key + 26) % 26) + 'A';
+    }
+
+    printf("\nDecrypted Text: %s", text);
+
+}
