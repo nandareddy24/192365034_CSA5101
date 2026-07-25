@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+
+int main() {
+    char plain[] = "abcdefghijklmnopqrstuvwxyz";
+    char cipher[] = "CIPHERABDFGJKLMNOQSTUVWXYZ";
+
+    char text[100], encrypted[100], decrypted[100];
+    int i, j;
+
+    printf("Enter the plaintext: ");
+    fgets(text, sizeof(text), stdin);
+
+    // Encryption
+    for (i = 0; text[i] != '\0'; i++) {
+        if (isalpha(text[i])) {
+            char ch = tolower(text[i]);
+            for (j = 0; j < 26; j++) {
+                if (plain[j] == ch) {
+                    encrypted[i] = cipher[j];
+                    break;
+                }
+            }
+        } else {
+            encrypted[i] = text[i];
+        }
+    }
+    encrypted[i] = '\0';
+
+    // Decryption
+    for (i = 0; encrypted[i] != '\0'; i++) {
+        if (isalpha(encrypted[i])) {
+            char ch = toupper(encrypted[i]);
+            for (j = 0; j < 26; j++) {
+                if (cipher[j] == ch) {
+                    decrypted[i] = plain[j];
+                    break;
+                }
+            }
+        } else {
+            decrypted[i] = encrypted[i];
+        }
+    }
+    decrypted[i] = '\0';
+
+    printf("\nPlain Text : %s", text);
+    printf("Encrypted Text : %s\n", encrypted);
+    printf("Decrypted Text : %s\n", decrypted);
+
+    return 0;
+}
